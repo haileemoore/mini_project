@@ -2,3 +2,12 @@ RewriteEngine On
 
 RewriteCond %{REQUEST_METHOD} ^GET$
 RewriteRule ^emoji$ controllers/emojis.php?action=index
+
+RewriteCond %{REQUEST_METHOD} ^POST$
+RewriteRule ^emoji$ controllers/emojis.php?action=post
+
+RewriteCond %{REQUEST_METHOD} ^PUT$
+RewriteRule ^emoji/([0-9]+)$ controllers/emojis.php?action=update&id=$1
+
+RewriteCond %{REQUEST_METHOD} ^DELETE$
+RewriteRule ^emoji/([0-9]+)$ controllers/emojis.php?action=delete&id=$1

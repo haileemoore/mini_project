@@ -37,6 +37,12 @@ class Emojis {
   }
 
   //create post here
+  static function create($emoji){
+    $query = "INSERT INTO emojis( name, referenceimg, description) VALUES ($1, $2, $3)";
+    $query_params = array($emoji->name, $emoji->referenceimg, $emoji->description);
+    pg_query_params($query, $query_params);
+    return self::all();
+  }
 
   //update post here
 
