@@ -3,11 +3,60 @@ class App extends React.Component {
     emoji: []
   }
 
+  /* Delete */
+  deleteEmoji = (event) => {
+    axios.delete('/emoji/' + event.target.value).then(
+      (response) => {
+        this.setState(
+          {
+            emoji: response.data
+          }
+        )
+      }
+    )
+  }
+
+  /* Update */
+  changeUpdateEmojiName = (event) => {
+    this.setState({
+      updateEmojiName: event.target.value
+    })
+  }
+
+  changeUpdateEmojiImage = (event) => {
+    this.setState({
+      updateEmojiImage: event.target.value
+    })
+  }
+
+  changeUpdateEmojiDesc = (event) => {
+    this.setState({
+      updateEmojiDesc: event.target.value
+    })
+  }
+
+  updateEmoji = (event) => {
+    const id = event.target.getAttribute('id');
+    axios.put(
+      '/emoji/' + id,
+      {
+        name: this.state.updateEmojiName,
+        referenceimg: this.state.updateEmojiImage,
+        description: this.state.updateEmojiDesc,
+      }
+    ).then(
+      (response) => {
+        emoji: response.data
+      }
+    )
+  }
+
+  /* Read */
   componentDidMount = () => {
     axios.get('/emoji').then(
       (response) => {
         this.setState({
-          emojis: response.data
+          emoji: response.data
         })
       }
     )
@@ -44,7 +93,7 @@ class App extends React.Component {
     ).then(
       (response) => {
         this.setState({
-          emojis: response.data
+          emoji: response.data
         })
       }
     )
@@ -72,6 +121,20 @@ class App extends React.Component {
                     <img src={emoji.referenceimg}/>
                     <h3>{emoji.name}</h3>
                     <p>{emoji.description}</p>
+                    <button value={emoji.id}
+                    onClick={this.deleteEmoji}
+                    className="delete">Delete</button>
+                    <h4>Update Emoji</h4>
+                    <form onSubmit={this.updateEmoji}
+                    id={emoji.id} className="update">
+                      <input onKeyUp={this.changeUpdateEmojiName}
+                      type="text" placeholder="Name"/><br/>
+                      <input onKeyUp={this.changeUpdateEmojiImage}
+                      type="text" placeholder="Image"/><br/>
+                      <input onKeyUp={this.changeUpdateEmojiDesc}
+                      type="text" placeholder="Description"/><br/>
+                      <input type="submit" value="Update"/>
+                    </form>
                   </li>
               }
             )
