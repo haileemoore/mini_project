@@ -121,9 +121,11 @@ class App extends React.Component {
                     <img src={emoji.referenceimg}/>
                     <h3>{emoji.name}</h3>
                     <p>{emoji.description}</p>
+                    /* Delete */
                     <button value={emoji.id}
                     onClick={this.deleteEmoji}
                     className="delete">Delete</button>
+                    /* Update */
                     <h4>Update Emoji</h4>
                     <form onSubmit={this.updateEmoji}
                     id={emoji.id} className="update">
@@ -140,8 +142,8 @@ class App extends React.Component {
             )
           }
           </ul>
-        </div>
-      </div>
+        </div> /* end read div*/
+      </div> /* end container div */
 
   }
 }
