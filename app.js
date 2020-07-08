@@ -36,6 +36,7 @@ class App extends React.Component {
   }
 
   updateEmoji = (event) => {
+    event.preventDefault();
     const id = event.target.getAttribute('id');
     axios.put(
       '/emoji/' + id,
@@ -140,8 +141,8 @@ class App extends React.Component {
             )
           }
           </ul>
-        </div> /* end read div*/
-      </div> /* end container div */
+        </div>
+      </div>
 
   }
 }
