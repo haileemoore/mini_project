@@ -1,4 +1,4 @@
 RewriteEngine On
 
 RewriteCond %{REQUEST_METHOD} ^GET$
-RewriteRule ^emoji% controllers/emoji.php?action=index
+RewriteRule ^emoji$ controllers/emojis.php?action=index
