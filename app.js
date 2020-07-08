@@ -21,7 +21,18 @@ class App extends React.Component {
 
   createEmoji = (event) => {
     event.preventDefault();
-    console.log(this.state);
+    axios.post(
+      '/emojis',
+      {
+        name: this.state.newEmojiName,
+        referenceimg: this.state.newEmojiImage,
+        description: this.state.newEmojiDesc,
+      }
+    ).then(
+      (response) => {
+        console.log(response);
+      }
+    )
   }
 
   render = () => {
