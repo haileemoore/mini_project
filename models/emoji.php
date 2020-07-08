@@ -45,8 +45,20 @@ class Emojis {
   }
 
   //update post here
+  static function update($updated_emoji){
+    $query = "UPDATE emojis SET name = $1, referenceimg = $2, description = $3 WHERE id = $4";
+    $query_params = array($updated_emoji->name, $updated_emoji->referenceimg, $updated_emoji->description, $updated_emoji->id);
+    pg_query_params($query, $query_params);
+    return self::all();
+  }
 
   //delete post here
+  static function delete($id){
+    $query = "DELETE FROM emojis WHERE id = $1";
+    $query_params = array($id);
+    $result = pg_query_params($query, $query_params);
+    return self::all();
+  }
 }
 
 ?>
