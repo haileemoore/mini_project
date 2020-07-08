@@ -1,6 +1,23 @@
-<?php 
+<?php
 
+$dbconn = null;
+  if(getenv('DATABASE_URL')) {
+    $connectionConfig = parse_url(getenv('DATABASE_URL'));
+    $host = $connectionConfig['host'];
+    $user = $connectionConfig['user'];
+    $password = $connectionConfig['pass'];
+    $port = $connectionConfig['port'];
+    $dbname = trim($connectionConfig['path'],'/');
+    $dbconn = pg_connect(
+    "host=".$host." ".
+    "user=".$user." ".
+    "password=".$password." ".
+    "port=".$port." ".
+    "dbname=".$dbname
+    );
+  } else {
 $dbconn = pg_connect("host=localhost dbname=requestemojis");
+}
 
 class Emoji{
   public $id;
@@ -31,7 +48,7 @@ class Emojis {
         $row_object->description
       );
       $emojis[] = $new_emoji;
-      $row_object = pg_fetch_object($results); 
+      $row_object = pg_fetch_object($results);
     }
     return $emojis;
   }
