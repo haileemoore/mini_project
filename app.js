@@ -1,4 +1,17 @@
 class App extends React.Component {
+  state = {
+    emojis: []
+  }
+
+  componentDidMount = () => {
+    axios.get('/emojis').then(
+      (response) => {
+        this.setState({
+          emojis: response.data
+        })
+      }
+    )
+  }
 
   /* Create */
   changeNewEmojiName = (event) => {
@@ -30,16 +43,18 @@ class App extends React.Component {
       }
     ).then(
       (response) => {
-        console.log(response);
+        this.setState({
+          emojis: response.data
+        })
       }
     )
   }
 
   render = () => {
-    return <div>
+    return <div className="container">
         <h1>Emoji Submissions</h1>
         <h2>Create Emoji</h2>
-        <form onSubmit={this.createEmoji}>
+        <form onSubmit={this.createEmoji} className="create">
           <input onKeyUp={this.changeNewEmojiName}
           type="text" placeholder="Name"/><br/>
           <input onKeyUp={this.changeNewEmojiImage}
@@ -48,7 +63,23 @@ class App extends React.Component {
           type="text" placeholder="Description"/><br/>
           <input type="submit" value="Create"/>
         </form>
+        <div className="read">
+          <ul>
+          {
+            this.state.emojis.map(
+              (emoji) => {
+                return <li className="list-unstyled">
+                    <img src={emoji.referenceimg}/>
+                    <h3>{emoji.name}</h3>
+                    <p>{emoji.description}</p>
+                  </li>
+              }
+            )
+          }
+          </ul>
+        </div>
       </div>
+
   }
 }
 
