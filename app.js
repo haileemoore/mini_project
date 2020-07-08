@@ -1,10 +1,10 @@
 class App extends React.Component {
   state = {
-    emojis: []
+    emoji: []
   }
 
   componentDidMount = () => {
-    axios.get('/emojis').then(
+    axios.get('/emoji').then(
       (response) => {
         this.setState({
           emojis: response.data
@@ -35,7 +35,7 @@ class App extends React.Component {
   createEmoji = (event) => {
     event.preventDefault();
     axios.post(
-      '/emojis',
+      '/emoji',
       {
         name: this.state.newEmojiName,
         referenceimg: this.state.newEmojiImage,
@@ -66,7 +66,7 @@ class App extends React.Component {
         <div className="read">
           <ul>
           {
-            this.state.emojis.map(
+            this.state.emoji.map(
               (emoji) => {
                 return <li className="list-unstyled">
                     <img src={emoji.referenceimg}/>
