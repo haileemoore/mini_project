@@ -45,8 +45,17 @@ class Emojis {
   }
 
   //update post here
+  static function udpate($emoji){
+    return self::all();
+  }
 
   //delete post here
+  static function delete($id){
+    $query = "DELETE FROM emojis WHERE id = $1";
+    $query_params = array($id);
+    $result = pg_query_params($query, $query_params);
+    return self::all();
+  }
 }
 
 ?>
