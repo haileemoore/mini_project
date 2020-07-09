@@ -1,19 +1,14 @@
-class App extends React.Component {
+
+/* INDIVIDUAL REQUEST COMPONENT */
+class EmojiRequest extends React.Component{
   state = {
-    emoji: []
+    updateActive: false
   }
 
-  /* Delete */
-  deleteEmoji = (event) => {
-    axios.delete('/emoji/' + event.target.value).then(
-      (response) => {
-        this.setState(
-          {
-            emoji: response.data
-          }
-        )
-      }
-    )
+  setFormActive = () => {
+    this.setState({
+      updateActive: !this.state.updateActive
+    });
   }
 
   /* Update */
@@ -47,13 +42,60 @@ class App extends React.Component {
       }
     ).then(
       (response) => {
-        emoji: response.data
+        //I'm not actually resetting the value of the parent state here - just forcing another get
+        this.props.getRequest;
+      }
+    )
+  }
+  render = () => {
+    return <li className="list-unstyled">
+    <img src={this.props.emoji.referenceimg}/>
+    <h3>{this.props.emoji.name}</h3>
+    <p>{this.props.emoji.description}</p>
+    <button onClick={this.setFormActive}>Edit Emoji</button>
+    {(this.state.updateActive === true) ?
+      <form onSubmit={this.updateEmoji}
+      id={this.props.emoji.id} className="form-inline">
+        <input onKeyUp={this.changeUpdateEmojiName}
+        type="text" placeholder="Name"/><br/>
+        <input onKeyUp={this.changeUpdateEmojiImage}
+        type="text" placeholder="Image"/><br/>
+        <input onKeyUp={this.changeUpdateEmojiDesc}
+        type="text" placeholder="Description"/><br/>
+        <input type="submit" value="Update" className="form-control"/>
+      </form>
+      : null
+    }
+    <button value={this.props.emoji.id}
+    onClick={this.deleteEmoji}
+    className="btn btn-dark">Delete
+    </button>
+  </li>
+  }
+}
+
+
+/* MAIN APP COMPONENT */
+class App extends React.Component {
+  state = {
+    emoji: []
+  }
+
+  /* Delete */
+  deleteEmoji = (event) => {
+    axios.delete('/emoji/' + event.target.value).then(
+      (response) => {
+        this.setState(
+          {
+            emoji: response.data
+          }
+        )
       }
     )
   }
 
-  /* Read */
-  componentDidMount = () => {
+  //because componentDidMount is a reserved function, I needed another get Request.
+  basicGet = () => {
     axios.get('/emoji').then(
       (response) => {
         this.setState({
@@ -61,6 +103,11 @@ class App extends React.Component {
         })
       }
     )
+  }
+
+  /* Read */
+  componentDidMount = () => {
+    this.basicGet();
   }
 
   /* Create */
@@ -112,26 +159,7 @@ class App extends React.Component {
           {
             this.state.emoji.map(
               (emoji) => {
-                return <li className="list-unstyled">
-                    <img src={emoji.referenceimg}/>
-                    <h3>{emoji.name}</h3>
-                    <p>{emoji.description}</p>
-                    <h4>Update Emoji</h4>
-                    <form onSubmit={this.updateEmoji}
-                    id={emoji.id} className="form-inline">
-                      <input onKeyUp={this.changeUpdateEmojiName}
-                      type="text" placeholder="Name"/><br/>
-                      <input onKeyUp={this.changeUpdateEmojiImage}
-                      type="text" placeholder="Image"/><br/>
-                      <input onKeyUp={this.changeUpdateEmojiDesc}
-                      type="text" placeholder="Description"/><br/>
-                      <input type="submit" value="Update" className="form-control"/>
-                    </form>
-                    <button value={emoji.id}
-                    onClick={this.deleteEmoji}
-                    className="btn btn-dark">Delete
-                    </button>
-                  </li>
+                return <EmojiRequest  getRequest={this.basicGet} emoji={emoji}></EmojiRequest>
               }
             )
           }
@@ -159,3 +187,7 @@ ReactDOM.render(
   <App></App>,
   document.querySelector('main')
 )
+
+//REFERENCES
+// found this stackoverflow answer super helpful when I didn't want to bother with React hooks to rerender the parent component
+// https://stackoverflow.com/questions/33680315/react-need-to-call-parent-to-re-render-component
