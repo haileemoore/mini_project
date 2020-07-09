@@ -4,7 +4,17 @@ class EmojiRequest extends React.Component{
   state = {
     updateActive: false
   }
-
+    /* Delete */
+  deleteEmoji = (event) => {
+    axios.delete('/emoji/' + event.target.value).then(
+      (response) => {
+        () => {
+          console.log('deleted');
+          //this.props.getRequest;
+        }
+      }
+    )
+  }
   setFormActive = () => {
     this.setState({
       updateActive: !this.state.updateActive
@@ -42,7 +52,6 @@ class EmojiRequest extends React.Component{
       }
     ).then(
       (response) => {
-        //I'm not actually resetting the value of the parent state here - just forcing another get
         this.props.getRequest;
       }
     )
@@ -81,23 +90,12 @@ class App extends React.Component {
     emoji: []
   }
 
-  /* Delete */
-  deleteEmoji = (event) => {
-    axios.delete('/emoji/' + event.target.value).then(
-      (response) => {
-        this.setState(
-          {
-            emoji: response.data
-          }
-        )
-      }
-    )
-  }
 
   //because componentDidMount is a reserved function, I needed another get Request.
   basicGet = () => {
     axios.get('/emoji').then(
       (response) => {
+        console.log('function is being hit by callback')
         this.setState({
           emoji: response.data
         })
