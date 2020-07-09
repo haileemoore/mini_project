@@ -101,18 +101,12 @@ class App extends React.Component {
   }
 
   render = () => {
-    return <div className="container">
+    return <div className="container-fluid">
         <h1>Emoji Submissions</h1>
-        <h2>Create Emoji</h2>
-        <form onSubmit={this.createEmoji} className="form-inline">
-          <input onKeyUp={this.changeNewEmojiName}
-          type="text" placeholder="Name"/><br/>
-          <input onKeyUp={this.changeNewEmojiImage}
-          type="text" placeholder="Image"/><br/>
-          <input onKeyUp={this.changeNewEmojiDesc}
-          type="text" placeholder="Description"/><br/>
-          <input type="submit" value="Create" className="form-control"/>
-        </form>
+        <nav>
+          <a href="#">home</a>
+          <a href="#">create</a>
+        </nav>
         <div className="read">
           <ul>
           {
@@ -135,12 +129,25 @@ class App extends React.Component {
                     </form>
                     <button value={emoji.id}
                     onClick={this.deleteEmoji}
-                    className="delete">Delete</button>
+                    className="btn btn-dark">Delete
+                    </button>
                   </li>
               }
             )
           }
           </ul>
+        </div>
+        <div className="create">
+          <h2>Create Emoji</h2>
+          <form onSubmit={this.createEmoji} className="form-inline">
+            <input onKeyUp={this.changeNewEmojiName}
+            type="text" placeholder="Name"/><br/>
+            <input onKeyUp={this.changeNewEmojiImage}
+            type="text" placeholder="Image"/><br/>
+            <input onKeyUp={this.changeNewEmojiDesc}
+            type="text" placeholder="Description"/><br/>
+            <input type="submit" value="Create" className="form-control"/>
+          </form>
         </div>
         <footer>Madeline Dutro | Hailee Doyle</footer>
       </div>

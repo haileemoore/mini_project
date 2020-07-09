@@ -11,13 +11,30 @@
 
 h1 {
   text-align: center;
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: black;
-  text-shadow: 4px 5px darkgrey;
-  letter-spacing: 15px;
+  letter-spacing: 30px;
   font-size: 50px;
   padding: 40px;
   font-family: 'Josefin Sans', sans-serif;
+  font-weight: bolder;
+  background-color:
+}
+
+nav {
+  text-align: center;
+  background-color: black;
+  padding: 15px;
+}
+
+a {
+  margin: 100px;
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+
 }
 
 h2 {
@@ -26,7 +43,7 @@ h2 {
   text-transform: uppercase;
   font-size: 24px;
   align-self: center;
-  letter-spacing: 50px;
+  letter-spacing: 20px;
   padding: 10px;
   margin: 0px 5px;
 }
@@ -37,11 +54,21 @@ h2 {
 
 input {
   border: 1px solid gainsboro;
-  margin: 0px 20px 30px 10px;
+  margin: 0px 20px 10px 10px;
   width: 260px;
-  overflow: visible;
   background-color: white;
   text-transform: uppercase;
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+input:hover {
+  overflow: visible;
+}
+
+input[type="submit"] {
+  margin:
 }
 
 input[type="submit"]:hover {
@@ -54,13 +81,14 @@ input[type="submit"]:hover {
   text-align: center;
   overflow: scroll;
   height: 700px;
-  border: 1px solid gainsboro;
+  margin: 20px;
 }
 
 li {
   display: inline-block;
   align-items: center;
-  margin: 10px;
+  border-bottom: 2px solid gainsboro;
+  margin: 15px;
 }
 
 img {
@@ -71,9 +99,31 @@ img {
   height: auto;
   border-radius: 50%;
   box-shadow: 9px 14px gold;
+  margin-top: 20px;
 }
 
 h3 {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 20px;
+  padding: 20px;
+  margin: 10px;
+}
+
+p {
+  align-self: flex-start;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 5px;
+  text-transform: lowercase;
+}
+
+p:first-of-type {
+  background-color: darkgrey;
+  color: white;
+}
+
+h4 {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 10px;
@@ -81,20 +131,31 @@ h3 {
   margin: 15px;
 }
 
-p {
-  align-self: flex-start;
-  text-align: center;
-  font-size: 18px;
-}
-
-h4 {
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 30px;
-  padding: 20px;
-  margin: 15px;
-}
-
 button {
-  
+  margin: 10px;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.create {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: gainsboro;
+  padding: 20px;
+}
+
+.create input {
+  width: 280px;
+}
+
+footer {
+  text-align: right;
+  text-transform: uppercase;
+  background-color: #C0D6E4;
+  padding: 30px;
+  /* margin: 20px; */
+  letter-spacing: 5px;
+  font-weight: bold;
 }
