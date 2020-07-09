@@ -101,7 +101,7 @@ class App extends React.Component {
   }
 
   render = () => {
-    return <div className="container">
+    return <div className=".container">
         <h1>Emoji Submissions</h1>
         <h2>Create Emoji</h2>
         <form onSubmit={this.createEmoji} className="create">
@@ -142,6 +142,7 @@ class App extends React.Component {
           }
           </ul>
         </div>
+        <footer>Madeline Dutro | Hailee Doyle</footer>
       </div>
 
   }
