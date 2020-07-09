@@ -23,7 +23,7 @@ h1 {
 
 nav {
   text-align: center;
-  background-color: black;
+  background-color: darkgrey;
   padding: 15px;
 }
 
@@ -31,10 +31,13 @@ a {
   margin: 100px;
   text-decoration: none;
   color: white;
+  letter-spacing: 10px;
 }
 
 a:hover {
-
+  text-decoration: none;
+  font-weight: bolder;
+  color: gold;
 }
 
 h2 {

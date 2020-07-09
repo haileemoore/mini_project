@@ -102,10 +102,10 @@ class App extends React.Component {
 
   render = () => {
     return <div className="container-fluid">
-        <h1>Emoji Submissions</h1>
+        <h1 id="home">Emoji Submissions</h1>
         <nav>
-          <a href="#">home</a>
-          <a href="#">create</a>
+          <a href="#home">home</a>
+          <a href="#create">create</a>
         </nav>
         <div className="read">
           <ul>
@@ -146,7 +146,7 @@ class App extends React.Component {
             type="text" placeholder="Image"/><br/>
             <input onKeyUp={this.changeNewEmojiDesc}
             type="text" placeholder="Description"/><br/>
-            <input type="submit" value="Create" className="form-control"/>
+            <input type="submit" value="Create" className="form-control" id="create"/>
           </form>
         </div>
         <footer>Madeline Dutro | Hailee Doyle</footer>
