@@ -101,17 +101,17 @@ class App extends React.Component {
   }
 
   render = () => {
-    return <div className=".container">
+    return <div className="container">
         <h1>Emoji Submissions</h1>
         <h2>Create Emoji</h2>
-        <form onSubmit={this.createEmoji} className="create">
+        <form onSubmit={this.createEmoji} className="form-inline">
           <input onKeyUp={this.changeNewEmojiName}
           type="text" placeholder="Name"/><br/>
           <input onKeyUp={this.changeNewEmojiImage}
           type="text" placeholder="Image"/><br/>
           <input onKeyUp={this.changeNewEmojiDesc}
           type="text" placeholder="Description"/><br/>
-          <input type="submit" value="Create"/>
+          <input type="submit" value="Create" className="form-control"/>
         </form>
         <div className="read">
           <ul>
@@ -122,20 +122,20 @@ class App extends React.Component {
                     <img src={emoji.referenceimg}/>
                     <h3>{emoji.name}</h3>
                     <p>{emoji.description}</p>
-                    <button value={emoji.id}
-                    onClick={this.deleteEmoji}
-                    className="delete">Delete</button>
                     <h4>Update Emoji</h4>
                     <form onSubmit={this.updateEmoji}
-                    id={emoji.id} className="update">
+                    id={emoji.id} className="form-inline">
                       <input onKeyUp={this.changeUpdateEmojiName}
                       type="text" placeholder="Name"/><br/>
                       <input onKeyUp={this.changeUpdateEmojiImage}
                       type="text" placeholder="Image"/><br/>
                       <input onKeyUp={this.changeUpdateEmojiDesc}
                       type="text" placeholder="Description"/><br/>
-                      <input type="submit" value="Update"/>
+                      <input type="submit" value="Update" className="form-control"/>
                     </form>
+                    <button value={emoji.id}
+                    onClick={this.deleteEmoji}
+                    className="delete">Delete</button>
                   </li>
               }
             )
