@@ -10,7 +10,7 @@ class EmojiRequest extends React.Component{
       (response) => {
         () => {
           console.log('deleted');
-          //this.props.getRequest;
+          this.props.getRequest;
         }
       }
     )
