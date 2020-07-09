@@ -70,12 +70,9 @@ input:hover {
   overflow: visible;
 }
 
-input[type="submit"] {
-  margin:
-}
-
 input[type="submit"]:hover {
   background-color: gold;
+  border: none;
   color: white;
 }
 
@@ -140,6 +137,12 @@ button {
   text-transform: uppercase;
 }
 
+button:hover {
+  background-color: gold;
+  border: none;
+  color: white;
+}
+
 .create {
   display: flex;
   flex-direction: row;
@@ -151,6 +154,10 @@ button {
 
 .create input {
   width: 280px;
+}
+
+.create input[type="submit"] {
+  width: 90px;
 }
 
 footer {

@@ -52,7 +52,7 @@ class EmojiRequest extends React.Component{
     <img src={this.props.emoji.referenceimg}/>
     <h3>{this.props.emoji.name}</h3>
     <p>{this.props.emoji.description}</p>
-    <button onClick={this.setFormActive}>Edit Emoji</button>
+    <button onClick={this.setFormActive} className="btn btn-dark">Update</button>
     {(this.state.updateActive === true) ?
       <form onSubmit={this.updateEmoji}
       id={this.props.emoji.id} className="form-inline">
@@ -174,7 +174,7 @@ class App extends React.Component {
             type="text" placeholder="Image"/><br/>
             <input onKeyUp={this.changeNewEmojiDesc}
             type="text" placeholder="Description"/><br/>
-            <input type="submit" value="Create" className="form-control" id="create"/>
+            <input type="submit" value="Create" className="btn btn-dark" id="create"/>
           </form>
         </div>
         <footer>Madeline Dutro | Hailee Doyle</footer>
